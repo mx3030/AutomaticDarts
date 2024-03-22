@@ -1,0 +1,3 @@
+htmlRoutes = {
+    "/" : "/index.html" 
+}

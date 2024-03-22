@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width" />
+        <title>Automatic Darts</title>
+
+        <!--external libraries-->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    </head>
+
+    <body>
+        <div class="container mt-3 d-flex flex-column gap-2">
+            <div class="d-flex flex-row gap-2">
+                
+                <!--video source selection-->
+                <div class="input-group h-25">
+                    <span class="input-group-text">Video</span>
+                    <select id="select-video-source" class="form-select" aria-label="Selection for Video Source"></select>
+                </div>
+                
+                <!--phone position selection-->
+                <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                    <input type="radio" class="btn-check" name="btn-radio" id="btn-position-left" autocomplete="off" checked>
+                    <label class="btn btn-outline-dark" for="btn-position-left">L</label>
+
+                    <input type="radio" class="btn-check" name="btn-radio" id="btn-position-right" autocomplete="off">
+                    <label class="btn btn-outline-dark" for="btn-position-right">R</label> 
+                </div>
+            </div>
+            
+            <!--start/stop-->
+            <div class="d-flex flex-row justify-content-center gap-2 h-25">
+                <button id="btn-stream-start" class="btn btn-success">Start</button>
+                <button id="btn-stream-stop" class="btn btn-danger" disabled>Stop</button>
+            </div>
+            
+            <!--video stream display-->
+            <div class="d-flex flex-row justify-content-center">
+                <video id="video-area" class="w-50" src="" height="" width="" preload="none" autoplay="autoplay" playsinline></video>
+            </div>
+            
+            <!--send photo-->
+            <div id="send-area" class="d-none flex-row justify-content-center gap-2">
+                <button id="btn-send-photo" class="btn btn-primary w-50 align-self-center mb-3">Send Photo</button>
+            </div>
+
+        </div>
+
+        <canvas id="canvas-area" style="display: none"></canvas>
+
+        <!--config insert-->
+        <script charset="utf-8">
+            const IP_ADDRESS = '[config:host]';
+            const WS_PORT = '[config:ws_port]';
+        </script>
+        <!--JS-->
+        <script charset="utf-8" src="/js/main.js"></script>
+        <script charset="utf-8" src="/js/mediaHandler.js"></script>
+        <script charset="utf-8" src="/js/webrtcHandler.js"></script>
+        <script charset="utf-8" src="/js/wsHandler.js"></script>
+    </body>
+</html>
