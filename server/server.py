@@ -1,6 +1,5 @@
 import os
 import ssl
-import asyncio
 from http.server import HTTPServer, BaseHTTPRequestHandler
 from response.staticHandler import StaticHandler
 from response.htmlHandler import HTMLHandler
