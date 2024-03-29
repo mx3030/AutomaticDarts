@@ -10,7 +10,7 @@ class HTMLHandler(RequestHandler):
         
     def find(self, routeData):
         try:
-            html_path = self.rootDir + routeData
+            html_path = os.path.join(self.rootDir, routeData)
             html_file = open(html_path, 'r')
             self.contents = html_file.read()
             self.setStatus(200)

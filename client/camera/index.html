@@ -19,15 +19,7 @@
                     <span class="input-group-text">Video</span>
                     <select id="select-video-source" class="form-select" aria-label="Selection for Video Source"></select>
                 </div>
-                
-                <!--phone position selection-->
-                <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
-                    <input type="radio" class="btn-check" name="btn-radio" id="btn-position-left" autocomplete="off" checked>
-                    <label class="btn btn-outline-dark" for="btn-position-left">L</label>
-
-                    <input type="radio" class="btn-check" name="btn-radio" id="btn-position-right" autocomplete="off">
-                    <label class="btn btn-outline-dark" for="btn-position-right">R</label> 
-                </div>
+                 
             </div>
             
             <!--start/stop-->
@@ -40,15 +32,8 @@
             <div class="d-flex flex-row justify-content-center">
                 <video id="video-area" class="w-50" src="" height="" width="" preload="none" autoplay="autoplay" playsinline></video>
             </div>
-            
-            <!--send photo-->
-            <div id="send-area" class="d-none flex-row justify-content-center gap-2">
-                <button id="btn-send-photo" class="btn btn-primary w-50 align-self-center mb-3">Send Photo</button>
-            </div>
-
+ 
         </div>
-
-        <canvas id="canvas-area" style="display: none"></canvas>
 
         <!--config insert-->
         <script charset="utf-8">
@@ -56,9 +41,9 @@
             const WS_PORT = '[config:ws_port]';
         </script>
         <!--JS-->
-        <script charset="utf-8" src="/js/main.js"></script>
-        <script charset="utf-8" src="/js/mediaHandler.js"></script>
-        <script charset="utf-8" src="/js/webrtcHandler.js"></script>
-        <script charset="utf-8" src="/js/wsHandler.js"></script>
+        <script charset="utf-8" src="camera/js/main.js"></script>
+        <script charset="utf-8" src="camera/js/mediaHandler.js"></script>
+        <script charset="utf-8" src="camera/js/webrtcHandler.js"></script>
+        <script charset="utf-8" src="camera/js/wsHandler.js"></script>
     </body>
 </html>

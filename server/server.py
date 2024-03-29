@@ -41,11 +41,9 @@ class Server(BaseHTTPRequestHandler):
         if request_extension == "" or request_extension == ".html":
             if self.path in htmlRoutes:
                 handler = HTMLHandler(self.server.client_dir)
-                handler.find(htmlRoutes[self.path])
-                if self.path == "/":
-                    # insert config data
-                    handler.replace('[config:host]', self.server.host)
-                    handler.replace('[config:ws_port]', str(self.server.ws_port))
+                handler.find(htmlRoutes[self.path]) 
+                handler.replace('[config:host]', self.server.host)
+                handler.replace('[config:ws_port]', str(self.server.ws_port))
             else:
                 handler = BadRequestHandler() 
         else:

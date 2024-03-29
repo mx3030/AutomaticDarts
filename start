@@ -1,0 +1,9 @@
+#!/bin/bash
+
+# run server and suppress ffmpeg warnings
+cd server
+python3 main.py 2>/dev/null
+cd -
+
+# remove all pipes
+rm -rf app/pipes && mkdir app/pipes

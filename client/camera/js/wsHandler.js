@@ -1,6 +1,6 @@
 class WSHandler {
     constructor(webrtcHandler){
-        this.ws = new WebSocket("wss://" + IP_ADDRESS + ":" + WS_PORT);
+        this.ws = new WebSocket("wss://" + IP_ADDRESS + ":" + WS_PORT + "/camera");
         this.webrtcHandler = webrtcHandler;
         this.setupListeners()
     }

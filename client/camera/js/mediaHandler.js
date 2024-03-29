@@ -3,7 +3,6 @@ class MediaHandler {
         this.stream = null;
         this.devices = [];
         this.videoArea = document.getElementById('video-area')
-        this.canvasArea = document.getElementById('canvas-area')
     }
 
     async getDevices(){
@@ -31,7 +30,7 @@ class MediaHandler {
                 video: {
                     width: { ideal: 1920 },
                     height: { ideal: 1080 },
-                    facingMode: deviceName == 'Frontkamera' ? 'user' : 'environment'
+                    facingMode: deviceName == 'Frontkamera' ? 'user' : 'environment',
                 },
                 audio: false
             };
@@ -64,17 +63,7 @@ class MediaHandler {
     stopVideo(){
         this.videoArea.srcObject = null;
     }
-
-    takePhoto(){
-        let w = this.videoArea.videoWidth;
-        let h = this.videoArea.videoHeight;
-        this.canvasArea.width = w;
-        this.canvasArea.height = h;
-        let ctx = this.canvasArea.getContext('2d');
-        ctx.drawImage(this.videoArea, 0, 0, w, h);
-        return this.canvasArea.toDataURL("image/jpeg");
-    }
-
+ 
     getStream(){
         return this.stream
     }

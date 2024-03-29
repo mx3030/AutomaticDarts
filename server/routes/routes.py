@@ -1,3 +1,4 @@
 htmlRoutes = {
-    "/" : "/index.html" 
+    "/camera" : "camera/index.html", 
+    "/app" : "app/index.html"
 }
