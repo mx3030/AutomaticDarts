@@ -22,7 +22,7 @@
                  
             </div>
             
-            <!--start/stop-->
+            <!--stream start/stop-->
             <div class="d-flex flex-row justify-content-center gap-2 h-25">
                 <button id="btn-stream-start" class="btn btn-success">Start</button>
                 <button id="btn-stream-stop" class="btn btn-danger" disabled>Stop</button>
@@ -31,6 +31,12 @@
             <!--video stream display-->
             <div class="d-flex flex-row justify-content-center">
                 <video id="video-area" class="w-50" src="" height="" width="" preload="none" autoplay="autoplay" playsinline></video>
+            </div>
+
+            <!--pipe start/stop-->
+            <div id="pipe-control" class="d-none flex-row justify-content-center gap-2 h-25">
+                <button id="btn-pipe-start" class="btn btn-success">start pipe</button>
+                <button id="btn-pipe-stop" class="btn btn-danger" disabled>stop pipe</button>
             </div>
  
         </div>

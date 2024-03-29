@@ -6,12 +6,8 @@ import time
 from aiortc import RTCPeerConnection, RTCSessionDescription 
 
 class WebRTCHandler():
-    def __init__(self, pipe_path):
-        self.pc = self.createPeerConnection()
-        self.frame = None
-        self.pipe_path = pipe_path
-        if not os.path.exists(self.pipe_path):
-            os.mkfifo(self.pipe_path)
+    def __init__(self):
+        self.pc = self.createPeerConnection() 
         self.pipe = None
         self.pipe_running = False
     
@@ -51,8 +47,10 @@ class WebRTCHandler():
         }
         await websocket.send(json.dumps(answer))
 
-    def startPipe(self):
-        self.pipe = open(self.pipe_path, 'wb')
+    def startPipe(self, pipe_path):
+        if not os.path.exists(pipe_path):
+            os.mkfifo(pipe_path)
+        self.pipe = open(pipe_path, 'wb')
         self.pipe_running = True
          
     def stopPipe(self):

@@ -20,11 +20,13 @@ class Main {
         this.startButton.disabled = false;
         this.stopButton = document.getElementById('btn-stream-stop');
         this.stopButton.disabled = true;
+        this.pipeControl = document.getElementById('pipe-control')
+        this.startPipeButton = document.getElementById('btn-pipe-start');
+        this.stopPipeButton = document.getElementById('btn-pipe-stop');
       
         this.setupEventListeners();
     }
     
-   
     fillVideoMenu(devices){
         devices.forEach((device, index) => {
             let videoItem = document.createElement("option");
@@ -40,7 +42,13 @@ class Main {
         });
         this.stopButton.addEventListener('click', ()=>{
             this.handleStopEvent();
-        }); 
+        });
+        this.startPipeButton.addEventListener('click', ()=>{
+            this.handleStartPipeEvent();
+        })
+        this.stopPipeButton.addEventListener('click', ()=>{
+            this.handleStopPipeEvent();
+        })
     }
 
     handleStartEvent(){
@@ -50,6 +58,10 @@ class Main {
             this.stopButton.disabled = false; 
             this.mediaHandler.startVideo(); 
             await this.connectWebRTC();
+            this.pipeControl.classList.remove('d-none')
+            this.pipeControl.classList.add('d-flex')
+            this.startPipeButton.disabled = false;
+            this.stopPipeButton.disabled = true;
         })
     }
 
@@ -57,7 +69,7 @@ class Main {
         this.webrtcHandler.addStream(this.mediaHandler.getStream())
         let message = await this.webrtcHandler.createOffer()
         if(message) {
-            this.wsHandler.send(JSON.stringify(message))
+            this.wsHandler.send(message)
         }
     }
  
@@ -65,9 +77,23 @@ class Main {
         this.startButton.disabled = false;
         this.stopButton.disabled = true;
         this.mediaHandler.stopVideo();
-        this.sendArea.classList.remove("d-flex")
-        this.sendArea.classList.add("d-none")
+        this.pipeControl.classList.add('d-none')
+        this.pipeControl.classList.remove('d-flex')
     } 
+
+    handleStartPipeEvent(){ 
+        this.startPipeButton.disabled = true;
+        this.stopPipeButton.disabled = false;
+        let message = { "topic": "start" } 
+        this.wsHandler.send(message)
+    }
+
+    handleStopPipeEvent(){
+        this.startPipeButton.disabled = false;
+        this.stopPipeButton.disabled = true;
+        let message = { "topic": "stop" }
+        this.wsHandler.send(message)
+    }
 
 }
 
