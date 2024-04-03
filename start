@@ -1,7 +1,27 @@
 #!/bin/bash
 
-# remove all existing pipes
+DEBUG=false
+
+while [[ $# -gt 0 ]]; do
+    key="$1"
+
+    case $key in
+        --debug)
+            DEBUG=true
+            shift
+            ;;
+        *)  # unknown option
+            echo "Unknown option: $1"
+            exit 1
+            ;;
+    esac
+done
+
+# Remove all existing pipes
 rm -rf pipes && mkdir pipes
 
-# run server and suppress ffmpeg warnings
-cd server && python3 main.py 2>/dev/null && cd -
+if [ "$DEBUG" = true ]; then
+    cd server && python3 main.py && cd -
+else
+    cd server && python3 main.py 2>/dev/null && cd -
+fi
