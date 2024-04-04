@@ -1,24 +1,20 @@
 #!/bin/bash
 
+# remove all existing pipes
+rm -rf pipes && mkdir pipes
+
+# start server 
 DEBUG=false
 
-while [[ $# -gt 0 ]]; do
-    key="$1"
-
-    case $key in
-        --debug)
-            DEBUG=true
-            shift
-            ;;
-        *)  # unknown option
-            echo "Unknown option: $1"
-            exit 1
-            ;;
-    esac
+while [ $# -gt 0 ]; do
+    if [ "$1" = "--debug" ]; then
+        DEBUG=true
+    else
+        echo "Unknown option: $1"
+        exit 1
+    fi
+    shift
 done
-
-# Remove all existing pipes
-rm -rf pipes && mkdir pipes
 
 if [ "$DEBUG" = true ]; then
     cd server && python3 main.py && cd -

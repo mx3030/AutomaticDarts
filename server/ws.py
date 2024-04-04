@@ -8,7 +8,7 @@ from webrtcHandler import WebRTCHandler
 
 def start_ws(host, ws_port, ssl_key, ssl_cert, app_main, pipes_dir):
     """
-    create new event loop for websocket thread+
+    create new event loop for websocket thread
     """
     loop = asyncio.new_event_loop() 
     asyncio.set_event_loop(loop)
@@ -146,6 +146,7 @@ class WS_Server:
                 # ---------------------------------------
                 else:
                     pair_id = data.get("pair_id")
+                    # target is "remote" or "local"
                     target = data.get("target")
                     calibration_pair = self.calibration_pairs.get(pair_id)
                     if calibration_pair:
