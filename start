@@ -4,20 +4,11 @@
 rm -rf pipes && mkdir pipes
 
 # start server 
-DEBUG=false
 
-while [ $# -gt 0 ]; do
-    if [ "$1" = "--debug" ]; then
-        DEBUG=true
-    else
-        echo "Unknown option: $1"
-        exit 1
-    fi
-    shift
-done
-
-if [ "$DEBUG" = true ]; then
+if [ $# -eq 1 ] && [ "$1" = "--debug" ]; then
+    echo "starting server with warnings enabled"
     cd server && python3 main.py && cd -
-else
+else    
+    echo "starting server with warnings disabled"
     cd server && python3 main.py 2>/dev/null && cd -
 fi
