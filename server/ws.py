@@ -76,14 +76,15 @@ class WS_Server:
 
     async def handleCalibration(self, websocket):
         """
-        handle calibration of ios camera
+        handle link between remote interface and local host for calibration of ios camera
         """  
         try:
             async for message in websocket:  
-                print(f"ws_server: {message}")
                 temp = json.loads(message)
                 topic = temp.get('topic', '')
                 data = temp.get('data', '')
+                
+                print(f"ws_server: {topic}")
                 
                 # ---------------------------------------
                 # ------------ local topics -------------
@@ -119,6 +120,7 @@ class WS_Server:
 
                 elif topic == "join_calibration_pair":
                     # remote client joins calibration pair
+                    # if multiple devices want to connect to same pair_id, remote_ws gets overwritten
                     pair_id = data.get("pair_id")
                     calibration_pair = self.calibration_pairs.get(pair_id)
                     if calibration_pair:
@@ -132,6 +134,7 @@ class WS_Server:
                     pair_id = data.get("pair_id")
                     calibration_pair = self.calibration_pairs.get(pair_id)
                     if calibration_pair:
+                        # inform local host on remote disconnection
                         local_ws = calibration_pair.get("local")
                         if local_ws:
                             message = { "topic": "remote pair disjoined" }

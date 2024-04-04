@@ -7,7 +7,7 @@ class Main {
         this.calStartButton = document.getElementById('btn-cal-start');
         this.calStopButton = document.getElementById('btn-cal-stop');
         this.calStopButton.disabled = true;
-        this.connectedPair = null;
+        this.pair_id = null;
 
         this.setupEventListeners();
     }
@@ -45,10 +45,10 @@ class Main {
     handleStartEvent(){
         let calIndex = this.calMenu.selectedIndex;
         let calOption = this.calMenu[calIndex];
-        this.connectedPair = calOption.value;
-        if(this.connectedPair){
+        this.pair_id = calOption.value;
+        if(this.pair_id){
             let data = {
-                "pair_id": this.connectedPair
+                "pair_id": this.pair_id
             };
             let message = {
                 "topic": "join_calibration_pair",
@@ -66,7 +66,7 @@ class Main {
 
     handleStopEvent(){
         let data = {
-            "pair_id": this.connectedPair,
+            "pair_id": this.pair_id,
         } 
         let message = {
             "topic": "disjoin_calibration_pair",
